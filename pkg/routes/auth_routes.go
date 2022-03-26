@@ -1,4 +1,4 @@
-package routes
+package routing
 
 import (
 	// "github.com/coopersec/api-cheksum/app/endpoint"
@@ -8,7 +8,7 @@ import (
 
 var db = make(map[string]string)
 
-func addAuthRoutes(r *gin.RouterGroup) {
+func addAuthrouting(r *gin.RouterGroup) {
 
 	authorized := r.Group("/", gin.BasicAuth(gin.Accounts{
 		"foo":  "bar", // user:foo password:bar

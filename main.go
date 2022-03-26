@@ -2,7 +2,7 @@ package main
 
 import (
 	"flag"
-	"github.com/coopersec/api-cheksum/pkg/routes"
+	"github.com/coopersec/api-cheksum/pkg/routing"
 	"github.com/fatih/color"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/ratelimit"
@@ -44,9 +44,9 @@ func ginRun(rps int) {
 
 	log.Printf(color.CyanString("Current Rate Limit: %v requests/s", rps))
 	// Send request onwards
-	routes.Run()
+	routing.Run()
 }
 
-// getRoutes will create our routes of our entire application
-// this way every group of routes can be defined in their own file
+// getrouting will create our routing of our entire application
+// this way every group of routing can be defined in their own file
 // so this one won't be so messy
