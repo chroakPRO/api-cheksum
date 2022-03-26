@@ -1,5 +1,6 @@
 package main
 
+/*
 import (
 	"log"
 	"net/http"
@@ -72,4 +73,4 @@ func GetProducts(c *gin.Context) {
 		log.Println(products)
 	}
 
-}
+*/

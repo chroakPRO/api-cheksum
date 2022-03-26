@@ -1,10 +1,12 @@
 package routes
 
 import (
-	"github.com/coopersec/api-cheksum/app/endpoint"
+	// "github.com/coopersec/api-cheksum/app/endpoint"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
+
+var db = make(map[string]string)
 
 func addAuthRoutes(r *gin.RouterGroup) {
 
@@ -12,7 +14,6 @@ func addAuthRoutes(r *gin.RouterGroup) {
 		"foo":  "bar", // user:foo password:bar
 		"manu": "123", // user:manu password:123
 	}))
-
 
 	/* example curl for /admin with basicauth header
 	   Zm9vOmJhcg== is base64("foo:bar")
@@ -23,7 +24,7 @@ func addAuthRoutes(r *gin.RouterGroup) {
 	  	-d '{"value":"bar"}'
 	*/
 
-	authorized.POST("admin", func(c *gin.Context){
+	authorized.POST("admin", func(c *gin.Context) {
 		user := c.MustGet(gin.AuthUserKey).(string)
 
 		// Parse JSON
@@ -36,10 +37,5 @@ func addAuthRoutes(r *gin.RouterGroup) {
 			c.JSON(http.StatusOK, gin.H{"status": "ok"})
 		}
 	})
-
-
-}
-
-
 
 }

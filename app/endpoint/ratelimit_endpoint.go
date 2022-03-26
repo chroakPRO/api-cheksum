@@ -1,5 +1,6 @@
 package endpoint
 
+/*
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -20,3 +21,4 @@ func rateLimit(c *gin.Context) {
 		c.String(http.StatusServiceUnavailable, "you were automatically banned :)")
 	}
 }
+*/

@@ -2,9 +2,12 @@ package main
 
 import (
 	"flag"
+	"github.com/coopersec/api-cheksum/pkg/routes"
+	"github.com/fatih/color"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/ratelimit"
 	"log"
+	"time"
 )
 
 var (
@@ -19,11 +22,20 @@ func main() {
 	ginRun(*rps)
 }
 
+func leakBucket() gin.HandlerFunc {
+	prev := time.Now()
+	return func(ctx *gin.Context) {
+		now := limit.Take()
+		log.Print(color.CyanString("%v", now.Sub(prev)))
+		prev = now
+	}
+}
+
 func ginRun(rps int) {
 
 	limit = ratelimit.New(rps)
 
-	app := gin.Default()
+	app := gin.New()
 	app.Use(leakBucket())
 
 	app.GET("/rate", func(ctx *gin.Context) {
@@ -32,7 +44,7 @@ func ginRun(rps int) {
 
 	log.Printf(color.CyanString("Current Rate Limit: %v requests/s", rps))
 	// Send request onwards
-	routes.Run(":8080")
+	routes.Run()
 }
 
 // getRoutes will create our routes of our entire application

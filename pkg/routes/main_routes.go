@@ -1,5 +1,7 @@
 package routes
 
+import "github.com/gin-gonic/gin"
+
 var (
 	router = gin.Default()
 )
@@ -15,9 +17,7 @@ func setupRouter() {
 	addPersonalRoutes(v1)
 	addAuthRoutes(v1)
 	addAuthRoutes(v1)
-	addRateRoutes(v1)
 
-	v2 := router.Group("/v2")
-	addPingRoutes(v2)
+	// v2 := router.Group("/v2")
 
 }
