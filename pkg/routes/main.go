@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"flag"
 	"github.com/fatih/color"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/ratelimit"
@@ -10,9 +11,13 @@ import (
 
 var (
 	router = gin.Default()
+	limit  ratelimit.Limiter
+	rps    = flag.Int("rps", 100, "request per second")
 )
 
 func Run() {
+	flag.Parse()
+	ginRun(*rps)
 	getRoutes()
 	router.Run(":5000")
 }
