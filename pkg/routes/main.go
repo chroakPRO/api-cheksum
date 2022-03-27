@@ -16,10 +16,10 @@ var (
 )
 
 func Run() {
-	flag.Parse()
-	ginRun(*rps)
+	//flag.Parse()
+	//ginRun(*rps)
 	getRoutes()
-	router.Run(":5000")
+	router.Run(":8080")
 }
 
 func getRoutes() {
@@ -53,5 +53,5 @@ func ginRun(rps int) {
 
 	log.Printf(color.CyanString("Current Rate Limit: %v requests/s", rps))
 	// Send request onwards
-	router.Run(":5000")
+	// router.Run(":5000")
 }
