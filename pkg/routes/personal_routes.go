@@ -8,7 +8,7 @@ import (
 
 func addPersonalRoute(rg *gin.RouterGroup) {
 	users := rg.Group("/info")
-	users.GET("/ping", func(c *gin.Context) {
+	users.GET("/", func(c *gin.Context) {
 		info := &models.PersonalStruct{}
 
 		if info != nil {
@@ -24,5 +24,12 @@ func addPersonalRoute(rg *gin.RouterGroup) {
 			c.JSON(http.StatusForbidden, gin.H{"status": "bad"})
 		}
 	})
+
+}
+
+func (r *Router) addPersonalRoutes(rg *gin.RouterGroup) {
+	addPersonalRoute(rg)
+}
+
 
 }

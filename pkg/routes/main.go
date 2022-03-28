@@ -24,7 +24,7 @@ func Run() {
 
 func getRoutes() {
 
-	v1 := router.Group("/v1")
+	v1 := router.Group("/api/v1")
 	addPersonalRoute(v1)
 	addAuth(v1)
 	// v2 := router.Group("/v2")
