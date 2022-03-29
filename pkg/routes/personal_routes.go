@@ -26,10 +26,3 @@ func addPersonalRoute(rg *gin.RouterGroup) {
 	})
 
 }
-
-func (r *Router) addPersonalRoutes(rg *gin.RouterGroup) {
-	addPersonalRoute(rg)
-}
-
-
-}
