@@ -1,2 +1,0 @@
-# api-cheksum
- Funny API

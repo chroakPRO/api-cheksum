@@ -1,0 +1,8 @@
+./docker-compose.yml
+.\docker-compose.yml
+.\docker-compose.yml.bak
+.\docker-compose.yml.old
+.\docker-compose.yml.swp
+.\docker-compose.yml.swp~
+.\docker-compose.yml~
+.\docker-compose*
