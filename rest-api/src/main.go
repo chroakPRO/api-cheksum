@@ -3,7 +3,8 @@ package main
 import (
 	"github.com/coopersec/api-cheksum/pkg/routes"
 )
-
+import "github.com/swaggo/gin-swagger" // gin-swagger middleware
+import "github.com/swaggo/files" // swagger embed files
 // Run will start the server
 // @title           [cheksum256] Ice Trails
 // @version         0.5v
