@@ -23,4 +23,5 @@ import (
 // @securityDefinitions.basic  BasicAuth
 func main() {
 	routes.Run()
+	// Comment out the following line to disable swagger UI
 }
