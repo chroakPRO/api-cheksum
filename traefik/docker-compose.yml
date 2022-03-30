@@ -1,0 +1,24 @@
+version: '3.7'
+
+networks:
+  traefik:
+    name: traefik
+
+services:
+    traefik:
+        restart: always
+        image: traefik:v2.4
+        command:
+            --api.insecure --providers.docker --providers.docker.exposedbydefault="false"
+        ports:
+            - "127.0.0.1:80:80"
+            - "127.0.0.1:443:443"
+            - "127.0.0.1:8080:8080"
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+        networks:
+          - traefik
+        labels:
+           - "traefik.enable=true"
+        hostname: traefik
+        container_name: traefik
