@@ -1,10 +1,16 @@
 package main
 
 import (
-	"github.com/coopersec/api-cheksum/pkg/routes"
+	"github.com/coopersec/api-cheksum/rest-api/src/pkg/routes"
+	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/example/basic/api"
+	_ "github.com/swaggo/gin-swagger/example/basic/docs"
 )
-import "github.com/swaggo/gin-swagger" // gin-swagger middleware
-import "github.com/swaggo/files" // swagger embed files
+
+// gin-swagger middleware
+// swagger embed files
 // Run will start the server
 // @title           [cheksum256] Ice Trails
 // @version         0.5v
@@ -23,6 +29,14 @@ import "github.com/swaggo/files" // swagger embed files
 
 // @securityDefinitions.basic  BasicAuth
 func main() {
+	r := gin.New()
+
+	r.GET("/v2/testapi/get-string-by-int/:some_id", api.GetStringByInt)
+	r.GET("/v2/testapi/get-struct-array-by-string/:some_id", api.GetStructArrayByString)
+
+	url := ginSwagger.URL("http://localhost:8080/swagger/doc.json") // The url pointing to API definition
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
+
 	routes.Run()
 	// Comment out the following line to disable swagger UI
 }

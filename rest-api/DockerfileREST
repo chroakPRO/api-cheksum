@@ -1,30 +1,23 @@
-ARG GO_VERSION=1.18
+ARG GO_VERSION=1.17
 
 FROM golang:${GO_VERSION}-alpine AS builder
 
 RUN apk update && apk add alpine-sdk git && rm -rf /var/cache/apk/*
-
-RUN mkdir -p /api
-RUN mkdir -p /REST-API/rest-api
-COPY * /REST-API/rest-api
-WORKDIR /api
-
-RUN go mod download
-
-COPY * .
-RUN go build ./src/main.go
-
-FROM alpine:latest
-
 RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 
 RUN mkdir -p /api
-WORKDIR /api
+RUN mkdir -p /REST-API/rest-api
+COPY * /REST-API/rest-api/
+RUN mkdir -p /api
 
-COPY --from=builder /api/src/app .
-COPY --from=builder /api/src/est.db .
-# DB is 5432
-# This is rest-api
+COPY * /api/
+WORKDIR /api
+RUN go mod download
+SHELL ["/bin/sh", "-c", "go build /api/main.go"]
 EXPOSE 8080
-ENTRYPOINT ["./app"]
+
+
+
+
+
 

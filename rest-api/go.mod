@@ -1,9 +1,8 @@
-module go-gin
+module github.com/coopersec/api-cheksum/rest-api
 
-go 1.18
+go 1.17
 
 require (
-	github.com/coopersec/api-cheksum v0.0.0-20220328141610-2a042cecdf2c
 	github.com/fatih/color v1.13.0
 	github.com/gin-gonic/gin v1.7.7
 	github.com/google/uuid v1.3.0
