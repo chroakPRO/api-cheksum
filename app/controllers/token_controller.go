@@ -5,7 +5,7 @@ import (
 	"github.com/koddr/tutorial-go-fiber-rest-api/pkg/utils"
 )
 
-// GetNewAccessToken method for create a new access token.
+//   method for create a new access token.
 // @Description Create a new access token.
 // @Summary create a new access token
 // @Tags Token
