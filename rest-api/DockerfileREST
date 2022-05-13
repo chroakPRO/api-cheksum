@@ -1,0 +1,23 @@
+ARG GO_VERSION=1.17
+
+FROM golang:${GO_VERSION}-alpine AS builder
+
+RUN apk update && apk add alpine-sdk git && rm -rf /var/cache/apk/*
+RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
+
+RUN mkdir -p /api
+RUN mkdir -p /REST-API/rest-api
+COPY * /REST-API/rest-api/
+RUN mkdir -p /api
+
+COPY * /api/
+WORKDIR /api
+RUN go mod download
+SHELL ["/bin/sh", "-c", "go build /api/main.go"]
+EXPOSE 8080
+
+
+
+
+
+
