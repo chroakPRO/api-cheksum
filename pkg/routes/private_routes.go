@@ -9,7 +9,7 @@ import (
 // PrivateRoutes func for describe group of private routes.
 func PrivateRoutes(a *fiber.App) {
 	// Create routes group.
-	route := a.Group("/api/v1")
+	route := a.Group("/private")
 
 	// Routes for POST method:
 	route.Post("/book", middleware.JWTProtected(), controllers.CreateBook) // create a new book
@@ -19,4 +19,10 @@ func PrivateRoutes(a *fiber.App) {
 
 	// Routes for DELETE method:
 	route.Delete("/book", middleware.JWTProtected(), controllers.DeleteBook) // delete one book by ID
+
+	route.Get("/server", middleware.JWTProtected(), controllers.GetServer) // get one server by ID")
+	route.Post("/server", middleware.JWTProtected(), controllers.CreateServer) // create a new server 
+	route.Put("/server", middleware.JWTProtected(), controllers.UpdateServer) // update one server by ID
+	route.Delete("/server", middleware.JWTProtected(), controllers.DeleteServer) // delete one server by ID
+
 }

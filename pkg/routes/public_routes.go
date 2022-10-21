@@ -16,4 +16,5 @@ func PublicRoutes(a *fiber.App) {
 	route.Get("/books", controllers.GetBooks)              // get list of all books
 	route.Get("/book/:id", controllers.GetBook)            // get one book by ID
 	route.Get("/token/new", controllers.GetNewAccessToken) // create a new access tokens
+	route.Get("/server", controllers.GetServer)            // get one server by ID
 }
